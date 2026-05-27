@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YAMASAKI FARM</title>
+  <title>山﨑農園 | YAMASAKI FARM</title>
 
   <style>
     *{
@@ -12,25 +12,35 @@
       box-sizing:border-box;
     }
 
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       font-family: Arial, sans-serif;
-      background:#fff;
       color:#111;
+      background:#fff;
+      overflow-x:hidden;
     }
 
     header{
-      border-bottom:1px solid #ddd;
-      position:sticky;
+      position:fixed;
+      width:100%;
       top:0;
-      background:#fff;
+      left:0;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
       z-index:1000;
+      border-bottom:1px solid #ddd;
     }
 
-    .top-bar{
+    .header-inner{
+      max-width:1200px;
+      margin:auto;
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:15px 5%;
+      padding:18px 5%;
     }
 
     .logo{
@@ -55,9 +65,12 @@
       opacity:0.6;
     }
 
+    /* HERO */
+
     .hero{
-      height:90vh;
-      background:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=2070&auto=format&fit=crop') center/cover;
+      position:relative;
+      height:100vh;
+      overflow:hidden;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -65,82 +78,131 @@
       color:#fff;
     }
 
+    .hero video{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-2;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.35);
+      z-index:-1;
+    }
+
     .hero-content{
-      background:rgba(0,0,0,0.45);
-      padding:40px;
-      border-radius:10px;
+      padding:20px;
+      animation:fadeUp 1.5s ease;
     }
 
     .hero h1{
-      font-size:60px;
-      margin-bottom:15px;
+      font-size:68px;
+      margin-bottom:20px;
+      letter-spacing:4px;
     }
 
     .hero p{
-      font-size:18px;
-      margin-bottom:20px;
+      font-size:20px;
+      margin-bottom:30px;
+      line-height:1.8;
     }
 
     .btn{
       display:inline-block;
-      padding:12px 30px;
       background:#111;
       color:#fff;
+      padding:14px 35px;
       text-decoration:none;
-      border-radius:5px;
+      border-radius:6px;
       transition:0.3s;
     }
 
     .btn:hover{
       background:#333;
+      transform:translateY(-2px);
     }
 
     section{
-      padding:80px 5%;
+      padding:100px 5%;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:auto;
     }
 
     .section-title{
-      font-size:32px;
-      margin-bottom:40px;
       text-align:center;
+      font-size:40px;
+      margin-bottom:60px;
     }
+
+    /* 商品 */
 
     .products{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:25px;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
     }
 
     .card{
-      border:1px solid #eee;
-      overflow:hidden;
-      transition:0.3s;
       background:#fff;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 8px 25px rgba(0,0,0,0.08);
+      transition:0.4s;
     }
 
     .card:hover{
-      transform:translateY(-5px);
-      box-shadow:0 10px 25px rgba(0,0,0,0.1);
+      transform:translateY(-8px);
     }
 
     .card img{
       width:100%;
-      height:300px;
+      height:320px;
       object-fit:cover;
     }
 
     .card-content{
-      padding:20px;
+      padding:25px;
     }
 
     .card h3{
-      margin-bottom:10px;
+      margin-bottom:15px;
+      font-size:24px;
     }
 
+    .price{
+      font-size:22px;
+      font-weight:bold;
+      margin:15px 0;
+    }
+
+    .note{
+      color:#666;
+      font-size:14px;
+    }
+
+    /* ABOUT */
+
     .about{
-      background:#f8f8f8;
+      background:#f7f7f7;
       text-align:center;
-      line-height:1.8;
+      line-height:2;
+      font-size:18px;
+    }
+
+    /* CONTACT */
+
+    .contact-box{
+      text-align:center;
+      line-height:2.2;
+      font-size:20px;
     }
 
     footer{
@@ -148,12 +210,27 @@
       color:#fff;
       text-align:center;
       padding:30px;
+      font-size:14px;
     }
 
-    /* スマホ対応 */
+    /* アニメーション */
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* スマホ */
+
     @media(max-width:768px){
 
-      .top-bar{
+      .header-inner{
         flex-direction:column;
         gap:15px;
       }
@@ -163,20 +240,20 @@
         justify-content:center;
       }
 
-      .hero{
-        height:70vh;
-      }
-
       .hero h1{
-        font-size:38px;
+        font-size:42px;
       }
 
       .hero p{
-        font-size:15px;
+        font-size:16px;
       }
 
       .section-title{
-        font-size:26px;
+        font-size:30px;
+      }
+
+      .contact-box{
+        font-size:17px;
       }
     }
 
@@ -186,82 +263,184 @@
 <body>
 
 <header>
-  <div class="top-bar">
-    <div class="logo">YAMASAKI FARM</div>
+  <div class="header-inner">
+
+    <div class="logo">山﨑農園</div>
 
     <nav>
-      <a href="#products">商品</a>
-      <a href="#about">私たちについて</a>
+      <a href="#products">商品一覧</a>
+      <a href="#about">農園について</a>
       <a href="#contact">お問い合わせ</a>
     </nav>
+
   </div>
 </header>
 
+<!-- HERO -->
+
 <section class="hero">
+
+  <!-- 宮崎の自然動画 -->
+  <video autoplay muted loop playsinline>
+    <source src="https://cdn.coverr.co/videos/coverr-rice-field-in-the-mountains-1564224551230?download=1080p" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
   <div class="hero-content">
-    <h1>自然の恵みを、もっと身近に。</h1>
-    <p>YAMASAKI FARMは、新鮮で安心できる農産物をお届けします。</p>
+    <h1>山﨑農園</h1>
+
+    <p>
+      宮崎の自然が育てた、<br>
+      本当に美味しい農産物を全国へ。
+    </p>
 
     <a href="#products" class="btn">
       商品を見る
     </a>
   </div>
+
 </section>
+
+<!-- 商品 -->
 
 <section id="products">
-  <h2 class="section-title">おすすめ商品</h2>
 
-  <div class="products">
+  <div class="container">
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <h3>新鮮野菜セット</h3>
-        <p>朝採れの新鮮野菜を詰め合わせ。</p>
+    <h2 class="section-title">商品一覧</h2>
+
+    <div class="products">
+
+      <!-- 米 -->
+
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>宮崎県産 米 3kg</h3>
+
+          <p>
+            宮崎の自然と水で育てた、
+            こだわりのお米です。
+          </p>
+
+          <div class="price">
+            ¥4,000
+          </div>
+
+          <p class="note">
+            ※税抜価格・送料込み
+          </p>
+
+        </div>
+
       </div>
-    </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <h3>こだわりトマト</h3>
-        <p>甘みと旨味を凝縮した人気商品。</p>
-      </div>
-    </div>
+      <!-- 定期便 -->
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <h3>季節のフルーツ</h3>
-        <p>旬の果物を厳選してお届け。</p>
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>米 定期便 3kg</h3>
+
+          <p>
+            毎月1回、新鮮なお米を
+            定期配送いたします。
+          </p>
+
+          <div class="price">
+            月々 ¥2,980〜
+          </div>
+
+          <p class="note">
+            ※税抜価格・送料込み
+          </p>
+
+        </div>
+
       </div>
+
+      <!-- きゅうり -->
+
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1604977042946-1eecc30f269e?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>宮崎県産 きゅうり 2kg</h3>
+
+          <p>
+            シャキッとみずみずしい
+            宮崎県産きゅうり。
+          </p>
+
+          <div class="price">
+            ¥5,000
+          </div>
+
+          <p class="note">
+            ※税抜価格・送料込み
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
+
 </section>
+
+<!-- ABOUT -->
 
 <section class="about" id="about">
-  <h2 class="section-title">YAMASAKI FARMについて</h2>
 
-  <p>
-    YAMASAKI FARMは、自然と品質にこだわり、<br>
-    安心して食べられる農産物を提供しています。<br><br>
+  <div class="container">
 
-    地域に根ざした農業を通じて、<br>
-    多くの人へ「おいしい」を届けます。
-  </p>
+    <h2 class="section-title">農園について</h2>
+
+    <p>
+      山﨑農園は宮崎県の豊かな自然の中で、<br>
+      安心・安全・美味しさにこだわった農産物を育てています。<br><br>
+
+      一つひとつ丁寧に育てた野菜やお米を、<br>
+      全国のお客様へお届けしています。
+    </p>
+
+  </div>
+
 </section>
 
-<section id="contact">
-  <h2 class="section-title">お問い合わせ</h2>
+<!-- CONTACT -->
 
-  <div style="text-align:center;">
-    <p>Mail : info@yamasakifarm.jp</p>
+<section id="contact">
+
+  <div class="container">
+
+    <h2 class="section-title">お問い合わせ</h2>
+
+    <div class="contact-box">
+
+      <p>📩 yamasaki.908@gmail.com</p>
+
+      <p>📞 090-7926-0507</p>
+
+    </div>
+
   </div>
+
 </section>
 
 <footer>
-  <p>© 2026 YAMASAKI FARM</p>
+  © 2026 山﨑農園 / YAMASAKI FARM
 </footer>
 
 </body>

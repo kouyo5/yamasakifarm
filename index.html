@@ -1,22 +1,505 @@
-<!-- =========================
- HERO セクション
- 宮崎感・農家感・動画背景
-========================= -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>山﨑農園 | 宮崎県最南端</title>
+
+<!-- フォント -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Shippori Mincho', serif;
+  overflow-x:hidden;
+  background:#fff;
+  color:#111;
+}
+
+/* =========================
+ HEADER
+========================= */
+
+header{
+  position:fixed;
+  width:100%;
+  top:0;
+  left:0;
+  z-index:1000;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(0,0,0,0.08);
+}
+
+.header-inner{
+  max-width:1300px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 5%;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:4px;
+}
+
+nav{
+  display:flex;
+  gap:30px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#111;
+  font-size:14px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  opacity:0.6;
+}
+
+/* =========================
+ HERO
+========================= */
+
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+}
+
+/* スライド背景 */
+
+.slideshow{
+  position:absolute;
+  inset:0;
+  z-index:-3;
+}
+
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  animation:fade 24s infinite;
+  transform:scale(1.08);
+}
+
+/* 日本風画像 */
+
+.slide:nth-child(1){
+  background-image:url('https://images.unsplash.com/photo-1516684732162-798a0062be99?q=80&w=2000&auto=format&fit=crop');
+  animation-delay:0s;
+}
+
+.slide:nth-child(2){
+  background-image:url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=2000&auto=format&fit=crop');
+  animation-delay:6s;
+}
+
+.slide:nth-child(3){
+  background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=2000&auto=format&fit=crop');
+  animation-delay:12s;
+}
+
+.slide:nth-child(4){
+  background-image:url('https://images.unsplash.com/photo-1566486189376-d5d1d53f5b23?q=80&w=2000&auto=format&fit=crop');
+  animation-delay:18s;
+}
+
+/* オーバーレイ */
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:-2;
+}
+
+/* HEROテキスト */
+
+.hero-content{
+  padding:20px;
+  animation:fadeUp 1.4s ease;
+}
+
+.mini{
+  letter-spacing:5px;
+  font-size:12px;
+}
+
+.hero h1{
+  font-size:82px;
+  margin:25px 0;
+  letter-spacing:8px;
+}
+
+.hero p{
+  font-size:21px;
+  line-height:2.2;
+}
+
+.main-btn{
+  display:inline-block;
+  margin-top:40px;
+  padding:16px 42px;
+  background:#fff;
+  color:#111;
+  text-decoration:none;
+  border-radius:4px;
+  transition:0.4s;
+  font-weight:700;
+}
+
+.main-btn:hover{
+  transform:translateY(-4px);
+  background:#f2f2f2;
+}
+
+/* =========================
+ SECTION
+========================= */
+
+section{
+  padding:120px 6%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:46px;
+  margin-bottom:70px;
+  letter-spacing:2px;
+}
+
+/* =========================
+ ABOUT
+========================= */
+
+.about{
+  background:#fafafa;
+}
+
+.about-grid{
+  max-width:1300px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.about-image img{
+  width:100%;
+  border-radius:14px;
+  object-fit:cover;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.about-text .sub{
+  font-size:13px;
+  letter-spacing:4px;
+  color:#777;
+}
+
+.about-text h2{
+  font-size:48px;
+  line-height:1.5;
+  margin:25px 0;
+}
+
+.about-text p{
+  line-height:2.3;
+  font-size:16px;
+}
+
+/* =========================
+ PRODUCTS
+========================= */
+
+.products-grid{
+  max-width:1300px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:35px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+}
+
+.card img{
+  width:100%;
+  height:340px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:28px;
+}
+
+.card-content h3{
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+.card-content p{
+  line-height:1.9;
+}
+
+.price{
+  margin:20px 0;
+  font-size:28px;
+  font-weight:bold;
+}
+
+.tax{
+  color:#777;
+  font-size:13px;
+}
+
+/* =========================
+ REPRESENTATIVE
+========================= */
+
+.rep{
+  background:#111;
+  color:#fff;
+}
+
+.rep-inner{
+  max-width:1000px;
+  margin:auto;
+  text-align:center;
+}
+
+.rep h2{
+  font-size:44px;
+  margin-bottom:40px;
+}
+
+.rep-name{
+  font-size:30px;
+  margin-bottom:30px;
+}
+
+.rep p{
+  line-height:2.4;
+  font-size:17px;
+}
+
+/* =========================
+ CONTACT
+========================= */
+
+.contact{
+  background:#f8f8f8;
+  text-align:center;
+}
+
+.contact p{
+  line-height:2;
+  margin-bottom:30px;
+}
+
+.contact-btn{
+  display:block;
+  width:360px;
+  max-width:90%;
+  margin:20px auto;
+  padding:18px;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  border-radius:6px;
+  transition:0.3s;
+  font-size:18px;
+}
+
+.contact-btn:hover{
+  transform:translateY(-3px);
+  background:#333;
+}
+
+/* =========================
+ FOOTER
+========================= */
+
+footer{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:35px;
+  font-size:14px;
+}
+
+/* =========================
+ ANIMATION
+========================= */
+
+@keyframes fade{
+
+  0%{
+    opacity:0;
+    transform:scale(1.08);
+  }
+
+  8%{
+    opacity:1;
+  }
+
+  25%{
+    opacity:1;
+    transform:scale(1);
+  }
+
+  33%{
+    opacity:0;
+  }
+
+  100%{
+    opacity:0;
+  }
+
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* =========================
+ SMARTPHONE
+========================= */
+
+@media(max-width:768px){
+
+  .header-inner{
+    flex-direction:column;
+    gap:15px;
+  }
+
+  nav{
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero h1{
+    font-size:48px;
+    letter-spacing:3px;
+  }
+
+  .hero p{
+    font-size:15px;
+    line-height:2;
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .about-text h2{
+    font-size:34px;
+  }
+
+  .section-title{
+    font-size:34px;
+  }
+
+  .rep h2{
+    font-size:32px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="logo">
+      山﨑農園
+    </div>
+
+    <nav>
+      <a href="#about">農園について</a>
+      <a href="#products">商品一覧</a>
+      <a href="#representative">代表紹介</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+
+  </div>
+
+</header>
+
+<!-- HERO -->
 
 <section class="hero">
 
-  <!-- 背景動画 -->
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-rice-fields-1579/1080p.mp4" type="video/mp4">
-  </video>
+  <div class="slideshow">
 
-  <!-- 暗めフィルター -->
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+
+  </div>
+
   <div class="overlay"></div>
 
-  <!-- テキスト -->
   <div class="hero-content">
 
-    <span class="sub-copy">
+    <span class="mini">
       MIYAZAKI / JAPAN
     </span>
 
@@ -26,11 +509,11 @@
 
     <p>
       宮崎県最南端。<br>
-      温暖な気候と自然豊かな土地で育てた、<br>
-      本当に美味しい農産物を全国へ。
+      自然と水に恵まれた土地で、<br>
+      本当に美味しい農産物を育てています。
     </p>
 
-    <a href="#about" class="btn">
+    <a href="#about" class="main-btn">
       山﨑農園について
     </a>
 
@@ -38,22 +521,25 @@
 
 </section>
 
+<!-- ABOUT -->
 
-<!-- =========================
- ABOUT
-========================= -->
+<section class="about" id="about">
 
-<section id="about" class="about-section">
+  <h2 class="section-title">
+    農園について
+  </h2>
 
   <div class="about-grid">
 
     <div class="about-image">
+
       <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1400&auto=format&fit=crop">
+
     </div>
 
     <div class="about-text">
 
-      <span class="mini-title">
+      <span class="sub">
         ABOUT FARM
       </span>
 
@@ -63,14 +549,12 @@
       </h2>
 
       <p>
-        山﨑農園では、
-        宮崎県最南端の自然豊かな環境の中で、
-        一つひとつ丁寧に農作物を育てています。<br><br>
+        山﨑農園は、宮崎県最南端の自然豊かな土地で、
+        一つひとつ丁寧に農産物を育てています。<br><br>
 
-        太陽、水、土。
-        その全てにこだわり、
-        安心して食べられる農産物を
-        全国へお届けしています。
+        温暖な気候、豊かな水、
+        そして自然の恵みを活かし、
+        本当に美味しいものを全国へ届けています。
       </p>
 
     </div>
@@ -79,10 +563,7 @@
 
 </section>
 
-
-<!-- =========================
- 商品一覧
-========================= -->
+<!-- PRODUCTS -->
 
 <section id="products">
 
@@ -90,7 +571,7 @@
     商品一覧
   </h2>
 
-  <div class="products">
+  <div class="products-grid">
 
     <!-- 米 -->
 
@@ -105,22 +586,21 @@
         </h3>
 
         <p>
-          甘みと旨味を感じる、
-          こだわりの日本米。
+          甘みと粘りにこだわった、
+          山﨑農園の日本米。
         </p>
 
         <div class="price">
           ¥4,000
         </div>
 
-        <span>
+        <div class="tax">
           税抜・送料込み
-        </span>
+        </div>
 
       </div>
 
     </div>
-
 
     <!-- 定期便 -->
 
@@ -143,14 +623,13 @@
           月々 ¥2,980〜
         </div>
 
-        <span>
+        <div class="tax">
           税抜・送料込み
-        </span>
+        </div>
 
       </div>
 
     </div>
-
 
     <!-- きゅうり -->
 
@@ -166,16 +645,16 @@
 
         <p>
           シャキッとみずみずしい、
-          日本産きゅうり。
+          宮崎県産きゅうり。
         </p>
 
         <div class="price">
           ¥5,000
         </div>
 
-        <span>
+        <div class="tax">
           税抜・送料込み
-        </span>
+        </div>
 
       </div>
 
@@ -185,238 +664,78 @@
 
 </section>
 
+<!-- REPRESENTATIVE -->
 
-<!-- =========================
- CONTACT
-========================= -->
+<section class="rep" id="representative">
 
-<section id="contact" class="contact-section">
+  <div class="rep-inner">
 
-  <h2 class="section-title">
-    お問い合わせ
-  </h2>
+    <h2>
+      生産者の想い
+    </h2>
 
-  <div class="contact-box">
+    <div class="rep-name">
+      代表 山﨑昭徳
+    </div>
 
     <p>
-      商品についてのお問い合わせは、
-      下記よりお気軽にご連絡ください。
+      宮崎の自然の中で育ち、
+      幼い頃から農業が身近にある環境で生活してきました。<br><br>
+
+      大量生産ではなく、
+      本当に美味しいものを届けたいという想いから、
+      一つひとつ丁寧に育てています。<br><br>
+
+      食べた瞬間に
+      「また食べたい」
+      と思っていただける農産物を、
+      全国へ届けることが山﨑農園の目標です。
     </p>
-
-    <br>
-
-    <a href="mailto:yamasaki.908@gmail.com" class="contact-link">
-      📩 yamasaki.908@gmail.com
-    </a>
-
-    <a href="tel:09079260507" class="contact-link">
-      📞 090-7926-0507
-    </a>
-
-    <br><br>
-
-    <!-- Googleフォーム -->
-    <a
-      href="https://docs.google.com/forms/"
-      target="_blank"
-      class="btn"
-    >
-      お問い合わせフォーム
-    </a>
 
   </div>
 
 </section>
 
+<!-- CONTACT -->
 
-<!-- =========================
- CSS
-========================= -->
+<section class="contact" id="contact">
 
-<style>
+  <h2 class="section-title">
+    お問い合わせ
+  </h2>
 
-.hero{
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:#fff;
-}
+  <p>
+    商品・定期便については
+    お気軽にお問い合わせください。
+  </p>
 
-.hero-video{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-}
+  <!-- メール -->
 
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-  z-index:-1;
-}
+  <a class="contact-btn"
+     href="mailto:yamasaki.908@gmail.com?subject=山﨑農園へのお問い合わせ">
 
-.hero-content{
-  padding:20px;
-  animation:fadeUp 1.2s ease;
-}
+    📩 メールで問い合わせる
 
-.sub-copy{
-  letter-spacing:4px;
-  font-size:13px;
-}
+  </a>
 
-.hero h1{
-  font-size:72px;
-  margin:20px 0;
-  letter-spacing:5px;
-}
+  <!-- 電話 -->
 
-.hero p{
-  line-height:2;
-  font-size:20px;
-}
+  <a class="contact-btn"
+     href="tel:09079260507">
 
-.btn{
-  display:inline-block;
-  margin-top:30px;
-  padding:14px 35px;
-  background:#fff;
-  color:#111;
-  text-decoration:none;
-  border-radius:5px;
-  transition:0.3s;
-}
+    📞 電話をかける
 
-.btn:hover{
-  transform:translateY(-3px);
-}
+  </a>
 
-.about-section{
-  padding:120px 8%;
-}
+</section>
 
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  align-items:center;
-}
+<!-- FOOTER -->
 
-.about-image img{
-  width:100%;
-  border-radius:14px;
-}
+<footer>
 
-.mini-title{
-  letter-spacing:3px;
-  color:#777;
-}
+  © 2026 山﨑農園 / YAMASAKI FARM
 
-.about-text h2{
-  font-size:42px;
-  margin:20px 0;
-  line-height:1.5;
-}
+</footer>
 
-.about-text p{
-  line-height:2;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-  padding:0 8% 100px;
-}
-
-.card{
-  overflow:hidden;
-  border-radius:14px;
-  background:#fff;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  transition:0.4s;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-}
-
-.card img{
-  width:100%;
-  height:320px;
-  object-fit:cover;
-}
-
-.card-content{
-  padding:25px;
-}
-
-.price{
-  font-size:24px;
-  font-weight:bold;
-  margin:15px 0;
-}
-
-.section-title{
-  text-align:center;
-  font-size:42px;
-  margin-bottom:60px;
-}
-
-.contact-section{
-  background:#f8f8f8;
-  padding:100px 5%;
-}
-
-.contact-box{
-  text-align:center;
-}
-
-.contact-link{
-  display:block;
-  margin:15px 0;
-  color:#111;
-  text-decoration:none;
-  font-size:20px;
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(30px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* スマホ */
-
-@media(max-width:768px){
-
-  .hero h1{
-    font-size:44px;
-  }
-
-  .hero p{
-    font-size:16px;
-  }
-
-  .about-grid{
-    grid-template-columns:1fr;
-  }
-
-  .about-text h2{
-    font-size:30px;
-  }
-
-}
-
-</style>
+</body>
+</html>
